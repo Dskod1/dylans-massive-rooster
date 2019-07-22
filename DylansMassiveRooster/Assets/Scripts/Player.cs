@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using UnityEngine.AI;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Player : MonoBehaviour
 {
@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     
     [System.NonSerialized] private GameObject movePoint;
     [System.NonSerialized] private bool move = false;
+    [System.NonSerialized] private float timeToWait = 0.5f * Time.deltaTime;
 
     private void Start()
     {
@@ -38,13 +39,20 @@ public class Player : MonoBehaviour
         }
         
     }
+    
+    private IEnumerator WaitForTime()
+    {
+        yield return new WaitForSeconds(timeToWait);
+        Destroy(movePoint); // Destroy the movePoint
+        move = false;// Stop Movement
+    }
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.CompareTag("Pointer")) // Check if you have collided with the movement position
         {
-            Destroy(movePoint); // Destroy the movePoint
-            move = false;// Stop Movement
+            StartCoroutine(
+                WaitForTime()); // Wait a little before stopping movement for player to get to center of movement
         }
     }
 }
