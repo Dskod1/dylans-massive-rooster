@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     
     [System.NonSerialized] private GameObject movePoint;
     [System.NonSerialized] private bool move = false;
-    [System.NonSerialized] private float timeToWait = 1.5f * Time.deltaTime;
+    [System.NonSerialized] private float timeToWait = 1.5f;
 
     private void Start()
     {
@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
     
     private IEnumerator WaitForTime()
     {
-        yield return new WaitForSeconds(timeToWait);
+        yield return new WaitForSeconds(timeToWait * Time.deltaTime);
         Destroy(movePoint); // Destroy the movePoint
         move = false;// Stop Movement
     }
