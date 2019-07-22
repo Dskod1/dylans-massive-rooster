@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     
     [System.NonSerialized] private GameObject movePoint;
     [System.NonSerialized] private bool move = false;
-    [System.NonSerialized] private float timeToWait = 0.5f * Time.deltaTime;
+    [System.NonSerialized] private float timeToWait = 1.5f * Time.deltaTime;
 
     private void Start()
     {
