@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [NonSerialized] private readonly float timeToWait = 5f;
+    [NonSerialized] private readonly float timeToWait = 10f;
     [NonSerialized] private bool move;
 
     [NonSerialized] private GameObject movePoint;
@@ -36,8 +36,7 @@ public class Player : MonoBehaviour
             GetComponent<Rigidbody2D>().position = Vector2.MoveTowards(transform.position, movePoint.transform.position,
                 moveSpeed * Time.deltaTime); //Move towards the point clicked
         }
-
-        if (GetComponent<Rigidbody2D>().velocity.y == 0f && GetComponent<Rigidbody2D>().velocity.x == 0f)
+        else //remove the move point
         {
             FindObjectOfType<Destroy>().GetComponent<Animator>()
                 .SetBool("pause", true); // Tells the animation to fade out and pause
@@ -48,7 +47,6 @@ public class Player : MonoBehaviour
     private IEnumerator WaitForTime()
     {
         yield return new WaitForSeconds(timeToWait * Time.deltaTime);
-        FindObjectOfType<Destroy>().SetToNotAlive(); // Tells the x animation to destroy itself after it fades out
         move = false; // Stop Movement
         GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
     }
@@ -59,8 +57,6 @@ public class Player : MonoBehaviour
         {
             StartCoroutine(
                 WaitForTime()); // Wait a little before stopping movement for player to get to center of movement
-            FindObjectOfType<Destroy>().GetComponent<Animator>()
-                .SetBool("pause", true); // Tells the animation to fade out and pause
             move = false; // Stop Movement
             var dir = collider.contacts[0].point -
                       new Vector2(transform.position.x, transform.position.y); //get the direction of the collision
@@ -78,8 +74,6 @@ public class Player : MonoBehaviour
         {
             StartCoroutine(
                 WaitForTime()); // Wait a little before stopping movement for player to get to center of movement
-            FindObjectOfType<Destroy>().GetComponent<Animator>()
-                .SetBool("pause", true); // Tells the animation to fade out and pause
         }
     }
 
