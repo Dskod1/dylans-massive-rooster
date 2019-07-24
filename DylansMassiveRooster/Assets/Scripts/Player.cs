@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
             GetComponent<Rigidbody2D>().position = Vector2.MoveTowards(transform.position, movePoint.transform.position,
                 moveSpeed * Time.deltaTime); //Move towards the point clicked
         }
-        else //remove the move point
+        else if (FindObjectOfType<Destroy>() != null) //remove the move point
         {
             FindObjectOfType<Destroy>().GetComponent<Animator>()
                 .SetBool("pause", true); // Tells the animation to fade out and pause
