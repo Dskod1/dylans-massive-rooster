@@ -48,12 +48,7 @@ public class Player : MonoBehaviour
 
     private void  OnCollisionEnter2D(Collision2D collider) //Check for collision
     {
-        if (collider.gameObject.CompareTag("Pointer")) // Check if you have collided with the movement position
-        {
-            StartCoroutine(
-                WaitForTime()); // Wait a little before stopping movement for player to get to center of movement
-            FindObjectOfType<Destroy>().GetComponent<Animator>().SetBool("pause", true);// Tells the animation to fade out and pause
-        }
+
         if (collider.gameObject.CompareTag("Restricted")) // Check if you have collided with the movement position
         {
             StartCoroutine(
@@ -69,6 +64,17 @@ public class Player : MonoBehaviour
                 WaitForTime()); // Wait a little before stopping movement for player to get to center of movement
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collider) //Check for collision trigger
+    {
+        if (collider.gameObject.CompareTag("Pointer")) // Check if you have collided with the movement position
+        {
+            StartCoroutine(
+                WaitForTime()); // Wait a little before stopping movement for player to get to center of movement
+            FindObjectOfType<Destroy>().GetComponent<Animator>().SetBool("pause", true);// Tells the animation to fade out and pause
+        }
+    }
+
     private void  OnCollisionStay2D(Collision2D collider) //Check if colliders are stuck on each other
     {
         if (collider.gameObject.CompareTag("Restricted")) // Check if player is stuck on restricted collider
