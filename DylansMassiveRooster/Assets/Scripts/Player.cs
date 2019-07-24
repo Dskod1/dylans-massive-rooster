@@ -32,8 +32,17 @@ public class Player : MonoBehaviour
         }
 
         if (move) // check if movement is possible
+        {
             GetComponent<Rigidbody2D>().position = Vector2.MoveTowards(transform.position, movePoint.transform.position,
                 moveSpeed * Time.deltaTime); //Move towards the point clicked
+        }
+
+        if (GetComponent<Rigidbody2D>().velocity.y == 0f && GetComponent<Rigidbody2D>().velocity.x == 0f)
+        {
+            FindObjectOfType<Destroy>().GetComponent<Animator>()
+                .SetBool("pause", true); // Tells the animation to fade out and pause
+            FindObjectOfType<Destroy>().SetToNotAlive(); // Tells the x animation to destroy itself after it fades out
+        }
     }
 
     private IEnumerator WaitForTime()

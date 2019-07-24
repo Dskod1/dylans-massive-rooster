@@ -986,7 +986,7 @@ PrefabInstance:
     - target: {fileID: 3488610983866527869, guid: 29c0f0d5afe444942b733b4120d06fdc,
         type: 3}
       propertyPath: reboundVelocity
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29c0f0d5afe444942b733b4120d06fdc, type: 3}
