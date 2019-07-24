@@ -65,6 +65,8 @@ public class Player : MonoBehaviour
             dir = -dir.normalized; // normalize direction and reverse it
             GetComponent<Rigidbody2D>().AddForce(dir * reboundVelocity); // move player away from collision
             GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0); // stop player movement
+            StartCoroutine(
+                WaitForTime()); // Wait a little before stopping movement for player to get to center of movement
         }
     }
     private void  OnCollisionStay2D(Collision2D collider) //Check if colliders are stuck on each other
@@ -76,6 +78,8 @@ public class Player : MonoBehaviour
             dir = -dir.normalized; // normalize direction and reverse it
             GetComponent<Rigidbody2D>().AddForce(dir * reboundVelocity); // move player away from collision
             GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0); // stop player movement
+            StartCoroutine(
+                WaitForTime()); // Wait a little before stopping movement for player to get to center of movement
         }
     }
 
