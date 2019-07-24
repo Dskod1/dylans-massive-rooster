@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1569738722963978452}
   - component: {fileID: 1569738722963978455}
+  - component: {fileID: 9122460060763553256}
   m_Layer: 0
   m_Name: Restricted Area Bottom
   m_TagString: Restricted
@@ -57,6 +58,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 30.962738, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &9122460060763553256
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569738722963978449}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0
 --- !u!1 &6399056204213109695
 GameObject:
   m_ObjectHideFlags: 0
@@ -67,6 +89,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6399056204213109690}
   - component: {fileID: 6399056204213109689}
+  - component: {fileID: 3912684884094837517}
   m_Layer: 0
   m_Name: Restricted Area Left
   m_TagString: Restricted
@@ -98,7 +121,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 8.228726}
@@ -114,6 +137,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 17.457457}
   m_EdgeRadius: 0
+--- !u!50 &3912684884094837517
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6399056204213109695}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 3
 --- !u!1 &6469331449112002621
 GameObject:
   m_ObjectHideFlags: 0
@@ -143,12 +187,12 @@ Transform:
   m_Children:
   - {fileID: 6399056204213109690}
   - {fileID: 8010676066033536734}
-  - {fileID: 7641162852065513062}
+  - {fileID: 4955018307105486958}
   - {fileID: 1569738722963978452}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &7641162852065513059
+--- !u!1 &7390018280444807129
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -156,8 +200,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7641162852065513062}
-  - component: {fileID: 7641162852065513061}
+  - component: {fileID: 4955018307105486958}
+  - component: {fileID: 5835331523215124051}
+  - component: {fileID: 2408958646719876203}
   m_Layer: 0
   m_Name: Restricted Area Top
   m_TagString: Restricted
@@ -165,27 +210,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7641162852065513062
+--- !u!4 &4955018307105486958
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7641162852065513059}
+  m_GameObject: {fileID: 7390018280444807129}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -20.84, y: 9.47, z: 216.11752}
+  m_LocalPosition: {x: -20.84, y: -5.11, z: 216.11752}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7654258666920290086}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &7641162852065513061
+--- !u!61 &5835331523215124051
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7641162852065513059}
+  m_GameObject: {fileID: 7390018280444807129}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -205,6 +250,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 30.962738, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &2408958646719876203
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7390018280444807129}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0
 --- !u!1 &8010676066033536731
 GameObject:
   m_ObjectHideFlags: 0
@@ -215,6 +281,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8010676066033536734}
   - component: {fileID: 8010676066033536733}
+  - component: {fileID: 5225551244226936844}
   m_Layer: 0
   m_Name: Restricted Area Right
   m_TagString: Restricted
@@ -246,7 +313,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 8.228726}
@@ -262,3 +329,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 17.457457}
   m_EdgeRadius: 0
+--- !u!50 &5225551244226936844
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8010676066033536731}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0
