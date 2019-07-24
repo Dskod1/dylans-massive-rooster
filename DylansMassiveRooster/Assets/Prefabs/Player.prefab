@@ -127,8 +127,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movePointer: {fileID: 6269867363850577636, guid: e6238753a3505be4b865b5d791275d63,
     type: 3}
-  reboundVelocity: 20
   moveSpeed: 5
+  reboundVelocity: 10
 --- !u!61 &858095501098316219
 BoxCollider2D:
   m_ObjectHideFlags: 0
