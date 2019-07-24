@@ -7,12 +7,9 @@ public class Destroy : MonoBehaviour
 
     public void DestroyObject()
     {
-        if (alive == false)
-        {
-            Destroy(gameObject);
-        }
+        if (alive == false) Destroy(gameObject);
     }
-    
+
     public void SetToNotAlive()
     {
         alive = false;
