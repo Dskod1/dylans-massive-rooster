@@ -80,6 +80,7 @@ public class Player : MonoBehaviour
             RB2D.AddForce(dir * reboundVelocity); // move player away from collision
             StartCoroutine(
                 WaitForTime()); // Wait a little before stopping movement for player to get to center of movement
+            WalkAnimationOff();
         }
     }
 
@@ -87,6 +88,7 @@ public class Player : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Pointer")) // Check if you have collided with the movement position
             move = false; // Stop Movement
+        WalkAnimationOff();
     }
 
     private void OnCollisionStay2D(Collision2D collider) //Check if colliders are stuck on each other and correct
