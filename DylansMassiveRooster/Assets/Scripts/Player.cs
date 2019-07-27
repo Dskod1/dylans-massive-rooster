@@ -6,12 +6,16 @@ public class Player : MonoBehaviour
 {
     [NonSerialized] private readonly float timeToWait = 1f;
     [NonSerialized] private bool move;
+    [NonSerialized] private float dirX;
+    [NonSerialized] private float dirY;
 
     [NonSerialized] private GameObject movePoint;
     [SerializeField] private GameObject movePointer;
     [SerializeField] private float moveSpeed = 1f;
     private Rigidbody2D RB2D;
     [SerializeField] private float reboundVelocity = 50f;
+    
+    
 
     private void Start()
     {
@@ -42,9 +46,11 @@ public class Player : MonoBehaviour
         {
             RB2D.position = Vector2.MoveTowards(transform.position, movePoint.transform.position,
                 moveSpeed * Time.deltaTime); //Move towards the point clicked
+            WalkAnimationOn();
         }
         else
         {
+            WalkAnimationOff();
             if (FindObjectOfType<Destroy>() != null) //Checks if the move point still exsists
             {
                 FindObjectOfType<Destroy>().GetComponent<Animator>()
@@ -97,4 +103,39 @@ public class Player : MonoBehaviour
     // Player Animation
     // Animator Int "direction" 1 = up left; 2 = up right; 3 = down right; 4 = down left
     // Animator bool "walk" 
+
+    private void WalkAnimationOn()
+    {
+        GetComponent<Animator>().SetBool("walk", true);
+        dirX = transform.position.x - movePoint.transform.position.x;
+        dirY = transform.position.y - movePoint.transform.position.y;
+
+        if (dirY < -1)
+        {
+            if (dirX < 0)
+            {
+                GetComponent<Animator>().SetInteger("direction", 1);
+            }
+            else
+            {
+                GetComponent<Animator>().SetInteger("direction", 2);
+            }
+        }
+        else
+        {
+            if (dirX < 0)
+            {
+                GetComponent<Animator>().SetInteger("direction", 3);
+            }
+            else
+            {
+                GetComponent<Animator>().SetInteger("direction", 4);
+            }
+        }
+    }
+    private void WalkAnimationOff()
+    {
+        GetComponent<Animator>().SetBool("walk", false);
+    }
+
 }
