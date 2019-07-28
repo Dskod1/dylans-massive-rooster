@@ -25,7 +25,6 @@ public class Player : MonoBehaviour
     private void Update()
     {
         Movement();
-        Debug.Log(RB2D.velocity);
     }
 
     // Player Movement
@@ -44,9 +43,10 @@ public class Player : MonoBehaviour
 
         if (move) // check if movement is possible
         {
+            WalkAnimationOn();
             RB2D.position = Vector2.MoveTowards(transform.position, movePoint.transform.position,
                 moveSpeed * Time.deltaTime); //Move towards the point clicked
-            WalkAnimationOn();
+            
         }
         else
         {
@@ -86,10 +86,13 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider) //Check for collision trigger
     {
-        if (collider.gameObject.CompareTag("Pointer")) // Check if you have collided with the movement position
-            move = false; // Stop Movement
-        WalkAnimationOff();
-    }
+        if (collider.gameObject.CompareTag("Pointer"))
+        {
+         // Check if you have collided with the movement position
+        move = false; // Stop Movement
+        WalkAnimationOff(); // Stop walk animation
+        }
+}
 
     private void OnCollisionStay2D(Collision2D collider) //Check if colliders are stuck on each other and correct
     {
