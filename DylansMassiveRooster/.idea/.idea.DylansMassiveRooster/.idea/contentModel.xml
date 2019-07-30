@@ -10,6 +10,7 @@
           <e p="CursorController.cs" t="Include" />
           <e p="Destroy.cs" t="Include" />
           <e p="Examine.cs" t="Include" />
+          <e p="Inventory.cs" t="Include" />
           <e p="Item.cs" t="Include" />
           <e p="Player.cs" t="Include" />
         </e>

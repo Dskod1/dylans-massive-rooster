@@ -8,12 +8,14 @@ public class Player : MonoBehaviour
     [NonSerialized] private bool move;
     [NonSerialized] private float dirX;
     [NonSerialized] private float dirY;
+    [NonSerialized] public bool walkingMode = true;
 
     [NonSerialized] private GameObject movePoint;
     [SerializeField] private GameObject movePointer;
     [SerializeField] private float moveSpeed = 1f;
     private Rigidbody2D RB2D;
     [SerializeField] private float reboundVelocity = 50f;
+    [NonSerialized] public float selectedItemX;
     
     
 
@@ -24,16 +26,34 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+
         Movement();
+            if (Math.Abs(transform.position.x - selectedItemX) < 1)
+            {
+                Destroy(movePoint); // Destroy the previous movePoint before setting a new one
+                move = false;
+                FindObjectOfType<Item>().PickUpObject();
+                selectedItemX = 1000000f;
+            }
+
+        
     }
 
     // Player Movement
+
+    public void MoveToSelectedItem()
+    {
+        Destroy(movePoint); // Destroy the previous movePoint before setting a new one
+        movePoint = Instantiate(movePointer, new Vector2(selectedItemX, transform.position.y),
+            Quaternion.identity); // Create an object where the mouse has been clicked
+        move = true; // Make movement possible
+    }
 
     private void Movement()
     {
         var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0;
-        if (Input.GetKeyDown(KeyCode.Mouse0)) //Check if mouse has been clicked to move
+        if (Input.GetKeyDown(KeyCode.Mouse0) && walkingMode == true) //Check if mouse has been clicked to move
         {
             Destroy(movePoint); // Destroy the previous movePoint before setting a new one
             movePoint = Instantiate(movePointer, mousePos,

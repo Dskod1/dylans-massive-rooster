@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Pointer
   - Restricted
+  - ItemFeedbackText
   layers:
   - Default
   - TransparentFX
