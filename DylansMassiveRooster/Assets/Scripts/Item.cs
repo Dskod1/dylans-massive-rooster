@@ -26,7 +26,7 @@ public class Item : MonoBehaviour
     {
         GameObject pickedUpItem = Instantiate(gameObject, new Vector3(0, 0, -50), Quaternion.identity);
         FindObjectOfType<Inventory>().inventoryList.Add(pickedUpItem);
-        Destroy(gameObject);
+        //MAKE OBJECT INVISBLE
         GameObject pickedUpItemText = GameObject.Find("Picked Up Item Text");
         pickedUpItemText.GetComponent<Text>().color = new Color(255,255,255, 255);
         pickedUpItemText.GetComponent<Text>().text = "Picked up " + gameObject.name;
@@ -38,6 +38,7 @@ public class Item : MonoBehaviour
         yield return new WaitForSeconds(timeToWaitForTextFeedback * Time.deltaTime);
         GameObject pickedUpItemText = GameObject.Find("Picked Up Item Text");
         pickedUpItemText.GetComponent<Text>().color = new Color(255, 255, 255, 0);
+        Destroy(gameObject);
     }
 
     private void OnMouseExit()
