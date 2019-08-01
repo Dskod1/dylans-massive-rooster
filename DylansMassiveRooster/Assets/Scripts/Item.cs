@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class Item : MonoBehaviour
 {
-    private float timeToWaitForTextFeedback = 1f;
+    private float timeToWaitForTextFeedback = 100f;
     private void OnMouseOver() //Activates if mouse is over object
     {
         FindObjectOfType<Player>().walkingMode = false; // Tell player he is no longer in walking mode
@@ -26,7 +26,7 @@ public class Item : MonoBehaviour
     {
         GameObject pickedUpItem = Instantiate(gameObject, new Vector3(0, 0, -50), Quaternion.identity);
         FindObjectOfType<Inventory>().inventoryList.Add(pickedUpItem);
-        //MAKE OBJECT INVISBLE
+        Destroy(gameObject.transform.GetChild(0).gameObject);
         GameObject pickedUpItemText = GameObject.Find("Picked Up Item Text");
         pickedUpItemText.GetComponent<Text>().color = new Color(255,255,255, 255);
         pickedUpItemText.GetComponent<Text>().text = "Picked up " + gameObject.name;
