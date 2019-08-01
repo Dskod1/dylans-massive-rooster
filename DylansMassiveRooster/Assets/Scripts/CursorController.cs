@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class CursorController : MonoBehaviour
 {
@@ -7,6 +8,9 @@ public class CursorController : MonoBehaviour
     [SerializeField] public Texture2D cursorUse;
     [SerializeField] public Texture2D cursorTake;
     [SerializeField] public Texture2D cursorTalkTo;
+    
+    [NonSerialized] public bool walkingMode = true;
+    [NonSerialized] public bool defaultMode = true;
 
     public void changeToCursorWalking()
     {
