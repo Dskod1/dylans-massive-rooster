@@ -7,7 +7,7 @@ public class Inventory : MonoBehaviour
 
     [Header("Editor")] [Range(0, 10)][SerializeField] private float inventoryMoveSpeed = 1.0f;
     [Range(0, 10)][SerializeField] private float inventoryDropDownOffset = 2f;
-    [Header("Debug Only")]
+    [Header("Debug Only - DO NOT SAVE CHANGES TO THIS IN THE EDITOR")]
     [SerializeField]public List<GameObject> inventoryList = new List<GameObject>();
     [SerializeField]private Vector2 startingInventoryPosition;
     [SerializeField]private Vector2 endingDownInventoryPosition;

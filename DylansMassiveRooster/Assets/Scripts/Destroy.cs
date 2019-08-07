@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Destroy : MonoBehaviour
 {
-    [NonSerialized] public bool alive = true;
+    [Header("Debug Only - DO NOT SAVE CHANGES TO THIS IN THE EDITOR")][SerializeField] public bool alive = true;
 
     public void DestroyObject()
     {
