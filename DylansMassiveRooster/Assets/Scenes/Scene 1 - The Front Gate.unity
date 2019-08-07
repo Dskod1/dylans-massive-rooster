@@ -330,7 +330,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 157283995}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.67, y: 11.9, z: 0}
+  m_LocalPosition: {x: 3.67, y: 10.83, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children:
   - {fileID: 668457035}
@@ -1651,7 +1651,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 763047848}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.72, y: 11.9, z: 0}
+  m_LocalPosition: {x: -3.72, y: 10.83, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children:
   - {fileID: 1802715874}
@@ -2213,6 +2213,8 @@ MonoBehaviour:
   cursorUse: {fileID: 2800000, guid: ff4b2e553313b294490138fa4ffe3d82, type: 3}
   cursorTake: {fileID: 2800000, guid: 81ffbf8e807574e48a45a8e19ecf4b16, type: 3}
   cursorTalkTo: {fileID: 2800000, guid: bb449270febe15146814c7a927ad4b25, type: 3}
+  walkingMode: 1
+  defaultMode: 1
 --- !u!1 &1129373656
 GameObject:
   m_ObjectHideFlags: 0
