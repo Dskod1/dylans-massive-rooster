@@ -2,24 +2,29 @@
 using System.Collections;
 using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
 {
-    [NonSerialized] private readonly float timeToWait = 1f;
-    [NonSerialized] private bool move;
-    [NonSerialized] private float dirX;
-    [NonSerialized] private float dirY;
- 
 
-    [NonSerialized] private GameObject movePoint;
+    [Header("Edit")]
     [SerializeField] private GameObject movePointer;
     [SerializeField] private float moveSpeed = 1f;
-    private Rigidbody2D RB2D;
     [SerializeField] private float reboundVelocity = 50f;
-    [NonSerialized] public Vector2 selectedItem;
-    [NonSerialized] public bool activateItem = false;
+    [SerializeField] private float timeToWaitToStopMovement = 1f;
     [SerializeField] private int itemToActivateProximity = 1;
     
+    //Only should be changed in the Unity editor for debug purposes
+    [Header("Debug Only")]
+    [FormerlySerializedAs("selectedItem")][SerializeField] public Vector2 selectedItemPosition;
+    [SerializeField] public bool activateItem = false;
+    [SerializeField] private bool move;
+    [SerializeField] private float dirX;
+    [NonSerialized] private float dirY;
+    [NonSerialized] private GameObject movePoint;
+    
+    //Code Use Only
+    private Rigidbody2D RB2D;
     
 
     private void Start()
@@ -31,10 +36,10 @@ public class Player : MonoBehaviour
     {
         Movement();
         Vector2 currentPosition = new Vector2(transform.position.x, transform.position.y);
-        if (selectedItem.x - currentPosition.x <= itemToActivateProximity &&
-                selectedItem.x - currentPosition.x >= -itemToActivateProximity && 
-                selectedItem.y - currentPosition.y <= itemToActivateProximity && 
-                selectedItem.y - currentPosition.y >= -itemToActivateProximity &&
+        if (selectedItemPosition.x - currentPosition.x <= itemToActivateProximity &&
+                selectedItemPosition.x - currentPosition.x >= -itemToActivateProximity && 
+                selectedItemPosition.y - currentPosition.y <= itemToActivateProximity && 
+                selectedItemPosition.y - currentPosition.y >= -itemToActivateProximity &&
                 activateItem == true)
             {
                 Destroy(movePoint); // Destroy the previous movePoint before setting a new one
@@ -50,7 +55,7 @@ public class Player : MonoBehaviour
     public void MoveToSelectedItem()
     {
         Destroy(movePoint); // Destroy the previous movePoint before setting a new one
-        movePoint = Instantiate(movePointer, new Vector2(selectedItem.x, transform.position.y),
+        movePoint = Instantiate(movePointer, new Vector2(selectedItemPosition.x, transform.position.y),
             Quaternion.identity); // Create an object where the mouse has been clicked
         move = true; // Make movement possible
     }
@@ -93,7 +98,7 @@ public class Player : MonoBehaviour
 
     private IEnumerator WaitForTime()
     {
-        yield return new WaitForSeconds(timeToWait * Time.deltaTime);
+        yield return new WaitForSeconds(timeToWaitToStopMovement * Time.deltaTime);
         move = false; // Stop Movement;
     }
 

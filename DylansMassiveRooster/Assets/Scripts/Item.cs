@@ -5,23 +5,28 @@ using UnityEngine.UI;
 public class Item : MonoBehaviour
 {
     private float timeToWaitForTextFeedback = 100f;
+    private bool itemPickedUp = false; 
     private void OnMouseOver() //Activates if mouse is over object
     {
-        FindObjectOfType<CursorController>().walkingMode = false; // Tell player he is no longer in walking mode
-        GetComponent<Animator>()
-            .SetBool("mouseHovering", true); //  sets the hover animation up
-        FindObjectOfType<CursorController>().changeToCursorTake(); // changes cursor to relevant one
-        if (Input.GetKeyDown(KeyCode.Mouse0)) //Check if mouse has been clicked to activate object
+        if (itemPickedUp != true)
         {
-            FindObjectOfType<Player>().selectedItem = new Vector2(transform.position.x, transform.position.y);
-            FindObjectOfType<Player>().activateItem = true;
-            FindObjectOfType<Player>().MoveToSelectedItem();
+            FindObjectOfType<CursorController>().walkingMode = false; // Tell player he is no longer in walking mode
+            GetComponent<Animator>()
+                .SetBool("mouseHovering", true); //  sets the hover animation up
+            FindObjectOfType<CursorController>().changeToCursorTake(); // changes cursor to relevant one
+            if (Input.GetKeyDown(KeyCode.Mouse0)) //Check if mouse has been clicked to activate object
+            {
+                FindObjectOfType<Player>().selectedItemPosition = new Vector2(transform.position.x, transform.position.y);
+                FindObjectOfType<Player>().activateItem = true;
+                FindObjectOfType<Player>().MoveToSelectedItem();
+            }
         }
 
     }
 
     public void PickUpObject()
     {
+        itemPickedUp = true;
         GameObject pickedUpItem = Instantiate(gameObject, new Vector3(0, 0, -50), Quaternion.identity);
         FindObjectOfType<Inventory>().inventoryList.Add(pickedUpItem);
         Destroy(gameObject.transform.GetChild(0).gameObject);
@@ -41,9 +46,12 @@ public class Item : MonoBehaviour
 
     private void OnMouseExit()
     {
-        FindObjectOfType<CursorController>().walkingMode = true; // Tell player he is in walking mode
-        GetComponent<Animator>() 
-            .SetBool("mouseHovering", false); // end hover animation
-        FindObjectOfType<CursorController>().changeToCursorWalking(); // change cursor to default
+        if (itemPickedUp != true)
+        {
+            FindObjectOfType<CursorController>().walkingMode = true; // Tell player he is in walking mode
+            GetComponent<Animator>()
+                .SetBool("mouseHovering", false); // end hover animation
+            FindObjectOfType<CursorController>().changeToCursorWalking(); // change cursor to default
+        }
     }
 }
