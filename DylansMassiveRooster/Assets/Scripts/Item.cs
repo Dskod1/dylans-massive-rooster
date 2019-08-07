@@ -4,8 +4,10 @@ using UnityEngine.UI;
 
 public class Item : MonoBehaviour
 {
-    private float timeToWaitForTextFeedback = 100f;
-    private bool itemPickedUp = false; 
+    [Header("Editor")]
+    [SerializeField]private float timeToWaitForTextFeedback = 100f;
+    [Header("Debug Only - DO NOT SAVE CHANGES TO THIS IN THE EDITOR")]
+    [SerializeField]private bool itemPickedUp = false; 
     private void OnMouseOver() //Activates if mouse is over object
     {
         if (itemPickedUp != true)

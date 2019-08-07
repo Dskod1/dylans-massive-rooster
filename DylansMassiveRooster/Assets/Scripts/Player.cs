@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     [SerializeField] private int itemToActivateProximity = 1;
     
     //Only should be changed in the Unity editor for debug purposes
-    [Header("Debug Only")]
+    [Header("Debug Only - DO NOT SAVE CHANGES TO THIS IN THE EDITOR")]
     [FormerlySerializedAs("selectedItem")][SerializeField] public Vector2 selectedItemPosition;
     [SerializeField] public bool activateItem = false;
     [SerializeField] private bool move;
