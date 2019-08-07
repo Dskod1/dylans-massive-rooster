@@ -12,7 +12,7 @@ public class Inventory : MonoBehaviour
     [SerializeField]private Vector2 startingInventoryPosition;
     [SerializeField]private Vector2 endingDownInventoryPosition;
     [SerializeField]private Vector2 targetPosition;
-    [SerializeField] private bool inventoryDown = false;
+    [SerializeField] public bool inventoryDown = false;
     [SerializeField] private GameObject inventoryPickedUpItemsObject;
 
     private void Start()
@@ -42,6 +42,6 @@ public class Inventory : MonoBehaviour
     private void OnMouseExit()
     {
         inventoryDown = false;
-        targetPosition = startingInventoryPosition;
+            targetPosition = startingInventoryPosition;
     }
 }
