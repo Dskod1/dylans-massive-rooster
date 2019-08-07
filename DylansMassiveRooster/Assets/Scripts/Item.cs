@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,7 +8,16 @@ public class Item : MonoBehaviour
     [Header("Editor")]
     [SerializeField]private float timeToWaitForTextFeedback = 100f;
     [Header("Debug Only - DO NOT SAVE CHANGES TO THIS IN THE EDITOR")]
-    [SerializeField]private bool itemPickedUp = false; 
+    [SerializeField]private bool itemPickedUp = false;
+    [SerializeField] private int totalInventoryCount = 0;
+    [SerializeField] private GameObject inventoryPickedUpItemsObject;
+    [SerializeField] private GameObject inventoryObject;
+
+    private void Start()
+    {
+        inventoryPickedUpItemsObject = GameObject.Find("Picked Up Items");
+    }
+
     private void OnMouseOver() //Activates if mouse is over object
     {
         if (itemPickedUp != true)
@@ -29,7 +39,8 @@ public class Item : MonoBehaviour
     public void PickUpObject()
     {
         itemPickedUp = true;
-        GameObject pickedUpItem = Instantiate(gameObject, new Vector3(0, 0, -50), Quaternion.identity);
+        totalInventoryCount += 1;
+        GameObject pickedUpItem = Instantiate(gameObject, inventoryPickedUpItemsObject.transform.position, Quaternion.identity, inventoryPickedUpItemsObject.transform);
         FindObjectOfType<Inventory>().inventoryList.Add(pickedUpItem);
         Destroy(gameObject.transform.GetChild(0).gameObject);
         GameObject pickedUpItemText = GameObject.Find("Picked Up Item Text");
