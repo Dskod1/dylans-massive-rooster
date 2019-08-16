@@ -14,10 +14,12 @@ public class Item : MonoBehaviour
     [SerializeField] private int totalInventoryCount = 0;
     [SerializeField] private GameObject inventoryPickedUpItemsObject;
     [SerializeField] private GameObject inventoryObject;
+    [SerializeField] private GameObject pickedUpItemText;
 
     private void Start()
     {
-        inventoryPickedUpItemsObject = GameObject.Find("Picked Up Items");
+        inventoryPickedUpItemsObject = GameObject.Find("Picked Up Items"); //At start of scene fine the piced up items object for use when picking up things.
+        pickedUpItemText = GameObject.Find("Picked Up Item Text"); ; // At start of scene find the text to be used later
     }
 
     private void OnMouseOver() //Activates if mouse is over object
@@ -40,24 +42,24 @@ public class Item : MonoBehaviour
 
     public void PickUpObject()
     {
-        itemPickedUp = true;
-        totalInventoryCount += 1;
-        GameObject pickedUpItem = Instantiate(gameObject, new Vector3(inventoryPickedUpItemsObject.transform.position.x, inventoryPickedUpItemsObject.transform.position.y, -1), Quaternion.identity, inventoryPickedUpItemsObject.transform);
-        pickedUpItem.transform.localScale = new Vector3(newItemSizeForInventory, newItemSizeForInventory );
-        FindObjectOfType<Inventory>().inventoryList.Add(pickedUpItem);
-        Destroy(gameObject.transform.GetChild(0).gameObject);
-        GameObject pickedUpItemText = GameObject.Find("Picked Up Item Text");
-        pickedUpItemText.GetComponent<Text>().color = new Color(255,255,255, 255);
-        pickedUpItemText.GetComponent<Text>().text = "Picked up " + gameObject.name;
-        StartCoroutine(WaitForExtraTime()); // Wait a little before removing text
+        itemPickedUp = true; 
+        totalInventoryCount += 1; // Sets the total amount of items in inventory
+        GameObject pickedUpItem = Instantiate(gameObject, 
+            new Vector3(inventoryPickedUpItemsObject.transform.position.x,inventoryPickedUpItemsObject.transform.position.y, -1), 
+            Quaternion.identity, inventoryPickedUpItemsObject.transform); //Create a copy of the item in the picked up items object
+        pickedUpItem.transform.localScale = new Vector3(newItemSizeForInventory, newItemSizeForInventory ); // Scale the new item so its the right size for the inventory
+        FindObjectOfType<Inventory>().inventoryList.Add(pickedUpItem); // Add the item the inventory list
+        Destroy(gameObject.transform.GetChild(0).gameObject); // Destroys the sprite of the object to make it dissapear
+        pickedUpItemText.GetComponent<Text>().color = new Color(255,255,255, 255); // Change the transparency of the text to show to the player
+        pickedUpItemText.GetComponent<Text>().text = "Picked up " + gameObject.name; // Change the text to match the item name
+        StartCoroutine(WaitForExtraTime()); // Wait a little before removing text and fully deleting the original item
     }
 
     private IEnumerator WaitForExtraTime()
     {
         yield return new WaitForSeconds(timeToWaitForTextFeedback * Time.deltaTime);
-        GameObject pickedUpItemText = GameObject.Find("Picked Up Item Text");
-        pickedUpItemText.GetComponent<Text>().color = new Color(255, 255, 255, 0);
-        Destroy(gameObject);
+        pickedUpItemText.GetComponent<Text>().color = new Color(255, 255, 255, 0); //set the picked up item text to be transparent
+        Destroy(gameObject); // Destroy the original object of the picked up item
     }
 
     private void OnMouseExit()

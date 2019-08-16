@@ -5,6 +5,7 @@ public class Destroy : MonoBehaviour
 {
     [Header("Debug Only - DO NOT SAVE CHANGES TO THIS IN THE EDITOR")][SerializeField] public bool alive = true;
 
+    //Destroys the object
     public void DestroyObject()
     {
         if (alive == false) Destroy(gameObject);

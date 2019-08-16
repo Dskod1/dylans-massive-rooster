@@ -140,10 +140,12 @@ public class Player : MonoBehaviour
     // Player Animation
     // Animator Int "direction" 1 = up left; 2 = up right; 3 = down right; 4 = down left
     // Animator bool "walk" 
+    
+    // Not currently in use but kept just in case we can use it with bone animation. DELETE if done with bones and still not used.
 
     private void WalkAnimationOn()
     {
-        GetComponent<Animator>().SetBool("walk", true);
+        //GetComponent<Animator>().SetBool("walk", true);
         dirX = transform.position.x - movePoint.transform.position.x;
         dirY = transform.position.y - movePoint.transform.position.y;
 
@@ -151,28 +153,28 @@ public class Player : MonoBehaviour
         {
             if (dirX < 0)
             {
-                GetComponent<Animator>().SetInteger("direction", 1);
+               // GetComponent<Animator>().SetInteger("direction", 1);
             }
             else
             {
-                GetComponent<Animator>().SetInteger("direction", 2);
+               // GetComponent<Animator>().SetInteger("direction", 2);
             }
         }
         else
         {
             if (dirX < 0)
             {
-                GetComponent<Animator>().SetInteger("direction", 3);
+               // GetComponent<Animator>().SetInteger("direction", 3);
             }
             else
             {
-                GetComponent<Animator>().SetInteger("direction", 4);
+               // GetComponent<Animator>().SetInteger("direction", 4);
             }
         }
     }
     private void WalkAnimationOff()
     {
-        GetComponent<Animator>().SetBool("walk", false);
+       // GetComponent<Animator>().SetBool("walk", false);
     }
 
 }

@@ -13,6 +13,8 @@ public class CursorController : MonoBehaviour
     [SerializeField] public bool walkingMode = true;
     [SerializeField] public bool defaultMode = true;
 
+    
+    // Different states the cursor can be put in by hovering over objects or manually ordering it.
     public void changeToCursorWalking()
     {
         Cursor.SetCursor(cursorWalking, Vector2.zero, CursorMode.Auto);
