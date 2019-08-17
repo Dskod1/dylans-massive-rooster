@@ -79,8 +79,8 @@ public class Item : MonoBehaviour
 
     public void PickUpObject()
     {
-        GetComponent<BoxCollider2D>().enabled = true;
-        itemPickedUp = true; 
+        GetComponent<BoxCollider2D>().enabled = true; // Enables the box collider. Important for item interaction in the inventory.
+        itemPickedUp = true;  // sets the item as picked up
         totalInventoryCount += 1; // Sets the total amount of items in inventory
         GameObject pickedUpItem = Instantiate(gameObject, 
             new Vector3(inventoryPickedUpItemsObject.transform.position.x,inventoryPickedUpItemsObject.transform.position.y, -1), 
