@@ -29,9 +29,9 @@ public class Item : MonoBehaviour
     {
         if (activated == true)
         {
-            Vector3 temp = Input.mousePosition;
-            temp.z = 10f; // Set this to be the distance you want the object to be placed in front of the camera.
-            transform.position = Camera.main.ScreenToWorldPoint(temp);
+            Vector3 currentMousePosition = Input.mousePosition; // get current mouse position
+            currentMousePosition.z = 10f; // Ensure the object remains on top.
+            transform.position = Camera.main.ScreenToWorldPoint(currentMousePosition); //move object together with the mouse
 
         }
     }
@@ -64,13 +64,13 @@ public class Item : MonoBehaviour
             {
                 if (activated == false) // check if item is not already activated
                 {
-                    originalInventoryPosition = transform.position;
+                    originalInventoryPosition = transform.position; // record orignal position of the item
                     activated = true; // activate item
                 }
                 else //if already activated then
                 {
-                    activated = false;
-                    transform.position = originalInventoryPosition;
+                    activated = false; //deactivate item
+                    transform.position = originalInventoryPosition; // move item back to original position
                 }
             }
         }
