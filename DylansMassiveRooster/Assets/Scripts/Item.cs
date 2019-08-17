@@ -58,12 +58,18 @@ public class Item : MonoBehaviour
             GetComponent<Animator>()
                 .SetBool("mouseHovering", true); //  sets the hover animation up
             FindObjectOfType<CursorController>().changeToCursorTake(); // changes cursor to relevant one
-            FindObjectOfType<Inventory>().inventoryDown = true;
-            FindObjectOfType<Inventory>().targetPosition = FindObjectOfType<Inventory>().endingDownInventoryPosition;
+            if (activated == false) //make sure the inventory stays down while the item isnt in use
+            {
+                FindObjectOfType<Inventory>().inventoryDown = true; 
+                FindObjectOfType<Inventory>().targetPosition = FindObjectOfType<Inventory>().endingDownInventoryPosition;
+            }
+
             if (Input.GetKeyDown(KeyCode.Mouse0)) //Check if mouse has been clicked to activate object
             {
                 if (activated == false) // check if item is not already activated
                 {
+                    FindObjectOfType<Inventory>().inventoryDown = false; //inventory free to go back up
+                    FindObjectOfType<Inventory>().targetPosition = FindObjectOfType<Inventory>().startingInventoryPosition;
                     originalInventoryPosition = transform.position; // record orignal position of the item
                     activated = true; // activate item
                 }

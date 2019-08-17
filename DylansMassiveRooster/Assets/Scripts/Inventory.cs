@@ -9,7 +9,7 @@ public class Inventory : MonoBehaviour
     [Range(0, 10)][SerializeField] private float inventoryDropDownOffset = 2f;
     [Header("Debug Only - DO NOT SAVE CHANGES TO THIS IN THE EDITOR")]
     [SerializeField]public List<GameObject> inventoryList = new List<GameObject>();
-    [SerializeField]private Vector2 startingInventoryPosition;
+    [SerializeField] public Vector2 startingInventoryPosition;
     [SerializeField] public Vector2 endingDownInventoryPosition;
     [SerializeField] public Vector2 targetPosition;
     [SerializeField] public bool inventoryDown = false;
