@@ -10,8 +10,8 @@ public class Inventory : MonoBehaviour
     [Header("Debug Only - DO NOT SAVE CHANGES TO THIS IN THE EDITOR")]
     [SerializeField]public List<GameObject> inventoryList = new List<GameObject>();
     [SerializeField]private Vector2 startingInventoryPosition;
-    [SerializeField]private Vector2 endingDownInventoryPosition;
-    [SerializeField]private Vector2 targetPosition;
+    [SerializeField] public Vector2 endingDownInventoryPosition;
+    [SerializeField] public Vector2 targetPosition;
     [SerializeField] public bool inventoryDown = false;
     [SerializeField] private GameObject inventoryPickedUpItemsObject;
 

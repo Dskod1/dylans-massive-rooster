@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.Camera;
 
 public class Item : MonoBehaviour
 {
@@ -13,13 +14,26 @@ public class Item : MonoBehaviour
     [SerializeField]private bool itemPickedUp = false;
     [SerializeField] private int totalInventoryCount = 0;
     [SerializeField] private GameObject inventoryPickedUpItemsObject;
-    [SerializeField] private GameObject inventoryObject;
     [SerializeField] private GameObject pickedUpItemText;
+    [SerializeField] private bool activated = false;
+    [SerializeField] private Vector3 originalInventoryPosition;
+
 
     private void Start()
     {
         inventoryPickedUpItemsObject = GameObject.Find("Picked Up Items"); //At start of scene fine the piced up items object for use when picking up things.
         pickedUpItemText = GameObject.Find("Picked Up Item Text"); ; // At start of scene find the text to be used later
+    }
+
+    private void Update()
+    {
+        if (activated == true)
+        {
+            Vector3 temp = Input.mousePosition;
+            temp.z = 10f; // Set this to be the distance you want the object to be placed in front of the camera.
+            transform.position = Camera.main.ScreenToWorldPoint(temp);
+
+        }
     }
 
     private void OnMouseOver() //Activates if mouse is over object
@@ -35,6 +49,29 @@ public class Item : MonoBehaviour
                 FindObjectOfType<Player>().selectedItemPosition = new Vector2(transform.position.x, transform.position.y);
                 FindObjectOfType<Player>().activateItem = true;
                 FindObjectOfType<Player>().MoveToSelectedItem();
+            }
+        }
+        
+        else if (itemPickedUp == true) // checks if item has already been picked up
+        {
+            FindObjectOfType<CursorController>().walkingMode = false; // Tell player he is no longer in walking mode
+            GetComponent<Animator>()
+                .SetBool("mouseHovering", true); //  sets the hover animation up
+            FindObjectOfType<CursorController>().changeToCursorTake(); // changes cursor to relevant one
+            FindObjectOfType<Inventory>().inventoryDown = true;
+            FindObjectOfType<Inventory>().targetPosition = FindObjectOfType<Inventory>().endingDownInventoryPosition;
+            if (Input.GetKeyDown(KeyCode.Mouse0)) //Check if mouse has been clicked to activate object
+            {
+                if (activated == false) // check if item is not already activated
+                {
+                    originalInventoryPosition = transform.position;
+                    activated = true; // activate item
+                }
+                else //if already activated then
+                {
+                    activated = false;
+                    transform.position = originalInventoryPosition;
+                }
             }
         }
 
@@ -64,7 +101,7 @@ public class Item : MonoBehaviour
 
     private void OnMouseExit()
     {
-        if (itemPickedUp != true)
+        if (activated == false)
         {
             FindObjectOfType<CursorController>().walkingMode = true; // Tell player he is in walking mode
             GetComponent<Animator>()
