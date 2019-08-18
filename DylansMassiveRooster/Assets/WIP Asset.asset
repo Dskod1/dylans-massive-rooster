@@ -15,8 +15,8 @@ MonoBehaviour:
   k_AssetVersion: 4
   m_RendererType: 0
   m_RendererData: {fileID: 11400000, guid: 6fbdfb46f6dd8c4468cd03d830b84c4c, type: 2}
-  m_RequireDepthTexture: 0
-  m_RequireOpaqueTexture: 0
+  m_RequireDepthTexture: 1
+  m_RequireOpaqueTexture: 1
   m_OpaqueDownsampling: 1
   m_SupportsHDR: 0
   m_MSAA: 1
@@ -43,4 +43,4 @@ MonoBehaviour:
   m_LocalShadowsAtlasResolution: 256
   m_MaxPixelLights: 0
   m_ShadowAtlasResolution: 256
-  m_ShaderVariantLogLevel: 0
+  m_ShaderVariantLogLevel: 2
